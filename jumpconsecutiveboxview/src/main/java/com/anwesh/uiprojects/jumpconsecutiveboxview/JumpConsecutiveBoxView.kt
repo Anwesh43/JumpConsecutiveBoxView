@@ -206,4 +206,13 @@ class JumpConsecutiveBoxView(ctx : Context) : View(ctx) {
         }
 
     }
+
+    companion object {
+
+        fun create(activity : Activity) : JumpConsecutiveBoxView {
+            val view : JumpConsecutiveBoxView = JumpConsecutiveBoxView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
