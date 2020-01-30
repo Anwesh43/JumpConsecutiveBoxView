@@ -182,4 +182,27 @@ class JumpConsecutiveBoxView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : JumpConsecutiveBoxView) {
+
+        private val animator : Animator = Animator(view)
+        private val jcb : JumpConsecutiveBox = JumpConsecutiveBox(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            jcb.draw(canvas, paint)
+            animator.animate {
+                jcb.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            jcb.startUpdating {
+                animator.start()
+            }
+        }
+
+    }
 }
